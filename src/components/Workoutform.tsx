@@ -10,8 +10,6 @@ const Workoutform = () => {
 
   const handleSub = async (e: any) => {
     e.preventDefault();
-
-    console.log("POST");
     const workout = { title, load, reps };
     const response = await fetch(
       "https://workoutmernteact.herokuapp.com/api/workouts",

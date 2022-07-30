@@ -11,7 +11,10 @@ switch (action.type) {
         return {
             workouts:[...state.workouts, action.payload]
         }
-
+ case "delete_wrkt":
+        return {
+            workouts:state.workouts.filter(wkt=>wkt._id!==action.payload._id)
+        }
         default:
             return state
 }
