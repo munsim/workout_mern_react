@@ -13,7 +13,7 @@ const Workoutform = () => {
 
     console.log("POST");
     const workout = { title, load, reps };
-    const response = await fetch(`http://localhost:4000/api/workouts`, {
+    const response = await fetch("https://www.smntest.me/api/workouts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

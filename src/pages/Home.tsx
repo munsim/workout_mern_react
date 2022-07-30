@@ -8,7 +8,7 @@ const Home = () => {
 
   useEffect(() => {
     const fetchWorkouts = async () => {
-      const response = await fetch(`http://localhost:4000/api/workouts`);
+      const response = await fetch("https://www.smntest.me/api/workouts");
       const newData = await response.json();
 
       if (response.ok) {
@@ -16,7 +16,7 @@ const Home = () => {
       }
     };
     fetchWorkouts();
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="home">
