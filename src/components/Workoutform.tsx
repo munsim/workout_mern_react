@@ -13,13 +13,16 @@ const Workoutform = () => {
 
     console.log("POST");
     const workout = { title, load, reps };
-    const response = await fetch("https://www.smntest.me/api/workouts", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(workout),
-    });
+    const response = await fetch(
+      "https://workoutmernteact.herokuapp.com/api/workouts",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(workout),
+      }
+    );
 
     const json = await response.json();
     if (!response.ok) {

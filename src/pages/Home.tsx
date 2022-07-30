@@ -8,7 +8,9 @@ const Home = () => {
 
   useEffect(() => {
     const fetchWorkouts = async () => {
-      const response = await fetch("https://www.smntest.me/api/workouts");
+      const response = await fetch(
+        "https://workoutmernteact.herokuapp.com/api/workouts"
+      );
       const newData = await response.json();
 
       if (response.ok) {
