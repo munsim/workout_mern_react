@@ -33,22 +33,23 @@ const WorkoutDetails = ({ workout }: any) => {
       return;
     } else if (newTitle === null) {
       return; //break out of the function early
-    }
-    const response = await fetch(`${url}/api/workouts/${wkt}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ title: newTitle }),
-    });
-    const json = await response.json();
+    } else {
+      const response = await fetch(`${url}/api/workouts/${wkt}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ title: newTitle }),
+      });
+      const json = await response.json();
 
-    if (!response.ok) {
-      seterror(json.error);
-    }
-    if (response.ok) {
-      console.log(json);
-      dispatch({ type: "update_wrkt", payload: json });
+      if (!response.ok) {
+        seterror(json.error);
+      }
+      if (response.ok) {
+        console.log(json);
+        dispatch({ type: "update_wrkt", payload: json });
+      }
     }
   };
 
@@ -63,23 +64,23 @@ const WorkoutDetails = ({ workout }: any) => {
     } else if (!/^\d+$/.test(newLoad)) {
       alert("Input has to be a number");
       return; //break out of the function early
-    }
+    } else {
+      const response = await fetch(`${url}/api/workouts/${wkt}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ load: newLoad }),
+      });
+      const json = await response.json();
 
-    const response = await fetch(`${url}/api/workouts/${wkt}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ load: newLoad }),
-    });
-    const json = await response.json();
-
-    if (!response.ok) {
-      seterror(json.error);
-    }
-    if (response.ok) {
-      console.log(json);
-      dispatch({ type: "update_wrkt", payload: json });
+      if (!response.ok) {
+        seterror(json.error);
+      }
+      if (response.ok) {
+        console.log(json);
+        dispatch({ type: "update_wrkt", payload: json });
+      }
     }
   };
 
@@ -94,23 +95,23 @@ const WorkoutDetails = ({ workout }: any) => {
     } else if (!/^\d+$/.test(newReps)) {
       alert("Input has to be a number");
       return; //break out of the function early
-    }
+    } else {
+      const response = await fetch(`${url}/api/workouts/${wkt}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ reps: newReps }),
+      });
+      const json = await response.json();
 
-    const response = await fetch(`${url}/api/workouts/${wkt}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ reps: newReps }),
-    });
-    const json = await response.json();
-
-    if (!response.ok) {
-      seterror(json.error);
-    }
-    if (response.ok) {
-      console.log(json);
-      dispatch({ type: "update_wrkt", payload: json });
+      if (!response.ok) {
+        seterror(json.error);
+      }
+      if (response.ok) {
+        console.log(json);
+        dispatch({ type: "update_wrkt", payload: json });
+      }
     }
   };
 

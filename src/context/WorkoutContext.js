@@ -17,9 +17,7 @@ switch (action.type) {
         }
     case "update_wrkt":
         return {
-           workouts:state.workouts.map((wkt)=>{
-              return wkt._id == action.payload._id ? {...wkt,title: action.payload.title, load:action.payload.load, reps:action.payload.reps} : wkt;
-            })
+           workouts:state.workouts.map((wkt)=>wkt._id == action.payload._id ? {...wkt,title: action.payload.title, load:action.payload.load, reps:action.payload.reps} : wkt)
         }
     default:
         return state
