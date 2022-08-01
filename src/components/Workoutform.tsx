@@ -30,7 +30,6 @@ const Workoutform = () => {
       setload("");
       setreps("");
       settitle("");
-      console.log("New workout added");
       dispatch({ type: "create_wrkt", payload: json });
     }
   };

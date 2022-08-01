@@ -48,7 +48,7 @@ const WorkoutDetails = ({ workout }: any) => {
       }
       if (response.ok) {
         console.log(json);
-        dispatch({ type: "update_wrkt", payload: json });
+        dispatch({ type: "update_wrkt_title", payload: json });
       }
     }
   };
@@ -79,7 +79,7 @@ const WorkoutDetails = ({ workout }: any) => {
       }
       if (response.ok) {
         console.log(json);
-        dispatch({ type: "update_wrkt", payload: json });
+        dispatch({ type: "update_wrkt_load", payload: json });
       }
     }
   };
@@ -110,7 +110,7 @@ const WorkoutDetails = ({ workout }: any) => {
       }
       if (response.ok) {
         console.log(json);
-        dispatch({ type: "update_wrkt", payload: json });
+        dispatch({ type: "update_wrkt_reps", payload: json });
       }
     }
   };
