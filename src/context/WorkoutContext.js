@@ -17,15 +17,15 @@ switch (action.type) {
         }
     case "update_wrkt_title":
         return {
-           workouts:state.workouts.map(wkt=>wkt._id == action.payload._id ? {...wkt,title: action.payload.title} : wkt)
+           workouts:state.workouts.map(wkt=> {return wkt._id == action.payload._id ? {...wkt,title: action.payload.title} : wkt})
         }
     case "update_wrkt_load":
         return {
-           workouts:state.workouts.map(wkt=>wkt._id == action.payload._id ? {...wkt, load:action.payload.load} : wkt)
+           workouts:state.workouts.map(wkt=>{return wkt._id == action.payload._id ? {...wkt, load:action.payload.load} : wkt})
         }
     case "update_wrkt_reps":
         return {
-           workouts:state.workouts.map(wkt=>wkt._id == action.payload._id ? {...wkt, reps:action.payload.reps} : wkt)
+           workouts:state.workouts.map(wkt=>{return wkt._id == action.payload._id ? {...wkt, reps:action.payload.reps} : wkt})
         }    
     default:
         return state
