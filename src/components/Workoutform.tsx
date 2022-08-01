@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
 
+import { url } from "../pages/Home";
+
 const Workoutform = () => {
   const { dispatch } = useWorkoutsContext();
   const [title, settitle] = useState("");
@@ -11,16 +13,13 @@ const Workoutform = () => {
   const handleSub = async (e: any) => {
     e.preventDefault();
     const workout = { title, load, reps };
-    const response = await fetch(
-      "https://workoutmernteact.herokuapp.com/api/workouts",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(workout),
-      }
-    );
+    const response = await fetch(`${url}/api/workouts`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(workout),
+    });
 
     const json = await response.json();
     if (!response.ok) {

@@ -101,6 +101,18 @@ form button {
   cursor: pointer;
 }
 
+.amend {
+  background: lightblue;
+  height: 25px;
+  border: 0;
+  margin-left: 50px;
+  color: #fff;
+  padding: 3px;
+  font-family: "Poppins";
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 div.error {
   padding: 10px;
   background: #ffefef;

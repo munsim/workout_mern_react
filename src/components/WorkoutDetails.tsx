@@ -1,22 +1,21 @@
 import React, { useState } from "react";
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
-import formatDistanceStrict from "date-fns/formatDistanceStrict";
+
+import { url } from "../pages/Home";
+
 const WorkoutDetails = ({ workout }: any) => {
   const [error, seterror] = useState(null);
   const { dispatch } = useWorkoutsContext();
+
   const deletewkt = async (e: any, wkt: any) => {
     e.preventDefault();
-    const response = await fetch(
-      `https://workoutmernteact.herokuapp.com/api/workouts/${wkt}`,
-      {
-        method: "DELETE",
-      }
-    );
+    const response = await fetch(`${url}/api/workouts/${wkt}`, {
+      method: "DELETE",
+    });
 
     const json = await response.json();
-    console.log(json);
-    console.log(response);
+
     if (!response.ok) {
       seterror(json.error);
     }
@@ -26,15 +25,119 @@ const WorkoutDetails = ({ workout }: any) => {
     }
   };
 
+  const amendtitle = async (e: any, wkt: any) => {
+    e.preventDefault();
+    const newTitle = prompt("Enter new text:");
+    if (newTitle?.length === 0) {
+      alert("Can't be blank");
+      return;
+    } else if (newTitle === null) {
+      return; //break out of the function early
+    }
+    const response = await fetch(`${url}/api/workouts/${wkt}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ title: newTitle }),
+    });
+    const json = await response.json();
+
+    if (!response.ok) {
+      seterror(json.error);
+    }
+    if (response.ok) {
+      console.log(json);
+      dispatch({ type: "update_wrkt", payload: json });
+    }
+  };
+
+  const amendload = async (e: any, wkt: any) => {
+    e.preventDefault();
+    const newLoad = prompt("Enter new load:");
+    if (newLoad?.length === 0) {
+      alert("Can't be blank");
+      return;
+    } else if (newLoad === null) {
+      return; //break out of the function early
+    } else if (!/^\d+$/.test(newLoad)) {
+      alert("Input has to be a number");
+      return; //break out of the function early
+    }
+
+    const response = await fetch(`${url}/api/workouts/${wkt}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ load: newLoad }),
+    });
+    const json = await response.json();
+
+    if (!response.ok) {
+      seterror(json.error);
+    }
+    if (response.ok) {
+      console.log(json);
+      dispatch({ type: "update_wrkt", payload: json });
+    }
+  };
+
+  const amendreps = async (e: any, wkt: any) => {
+    e.preventDefault();
+    const newReps = prompt("Enter new reps:");
+    if (newReps?.length === 0) {
+      alert("Can't be blank");
+      return;
+    } else if (newReps === null) {
+      return; //break out of the function early
+    } else if (!/^\d+$/.test(newReps)) {
+      alert("Input has to be a number");
+      return; //break out of the function early
+    }
+
+    const response = await fetch(`${url}/api/workouts/${wkt}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ reps: newReps }),
+    });
+    const json = await response.json();
+
+    if (!response.ok) {
+      seterror(json.error);
+    }
+    if (response.ok) {
+      console.log(json);
+      dispatch({ type: "update_wrkt", payload: json });
+    }
+  };
+
   return (
     <div className="workout-details">
-      <h4>{workout.title}</h4>
-      <p>
-        <strong>Load (kg):</strong> {workout.load}
-      </p>
-      <p>
-        <strong>Reps:</strong> {workout.reps}
-      </p>
+      <div style={{ display: "flex", flexDirection: "row" }}>
+        <h4>{workout.title}</h4>
+        <button className="amend" onClick={(e) => amendtitle(e, workout._id)}>
+          Update
+        </button>
+      </div>
+      <div style={{ display: "flex", flexDirection: "row", marginTop: "7px" }}>
+        <p>
+          <strong>Load (kg):</strong> {workout.load}
+        </p>
+        <button className="amend" onClick={(e) => amendload(e, workout._id)}>
+          Update
+        </button>
+      </div>
+      <div style={{ display: "flex", flexDirection: "row", marginTop: "7px" }}>
+        <p>
+          <strong>Reps:</strong> {workout.reps}
+        </p>
+        <button className="amend" onClick={(e) => amendreps(e, workout._id)}>
+          Update
+        </button>
+      </div>
       <p>
         {formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}
       </p>
