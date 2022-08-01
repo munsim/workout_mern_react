@@ -19,6 +19,7 @@ const Home = () => {
       }
     };
     fetchWorkouts();
+    console.log("rerender");
   }, [dispatch]);
 
   return (

@@ -47,7 +47,6 @@ const WorkoutDetails = ({ workout }: any) => {
         seterror(json.error);
       }
       if (response.ok) {
-        console.log(json);
         dispatch({ type: "update_wrkt_title", payload: json });
       }
     }
@@ -78,7 +77,6 @@ const WorkoutDetails = ({ workout }: any) => {
         seterror(json.error);
       }
       if (response.ok) {
-        console.log(json);
         dispatch({ type: "update_wrkt_load", payload: json });
       }
     }
@@ -109,7 +107,6 @@ const WorkoutDetails = ({ workout }: any) => {
         seterror(json.error);
       }
       if (response.ok) {
-        console.log(json);
         dispatch({ type: "update_wrkt_reps", payload: json });
       }
     }
